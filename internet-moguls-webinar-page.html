@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Masterclass | Internet Moguls</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- WebinarFuel -->
+  <script src="https://d3pw37i36t41cq.cloudfront.net/embed_v2.js" async></script>
+  <style>
+    /* ─── CLICKFUNNELS OVERRIDE RESET ─── */
+    /* Only override specific named classes — never use wildcards or touch .wf_target */
+
+    /* WHITE headline overrides — CF forces h1/h2/h3 to gray, so we target each class explicitly */
+    .im-page .hero-title,
+    .im-page .hero-title span:not(.green-text),
+    .im-page .learn-title,
+    .im-page .learn-card h3,
+    .im-page .ai-apps-title,
+    .im-page .ai-app-name,
+    .im-page .ai-callout-text,
+    .im-page .proof-headline,
+    .im-page .proof-headline span:not(.green-text),
+    .im-page .award-content h2,
+    .im-page .award-content h2 span:not(.green-text),
+    .im-page .social-title,
+    .im-page .testimonials-title,
+    .im-page .bio-name,
+    .im-page .final-headline,
+    .im-page .final-headline span:not(.green-text),
+    .im-page .section-title,
+    .im-page h1,
+    .im-page h2,
+    .im-page h3,
+    .im-page h4 { color: #ffffff !important; }
+
+    /* White body text */
+    .im-page .hero-sub,
+    .im-page .learn-card p,
+    .im-page .bio-role,
+    .im-page .bio-quote,
+    .im-page .cta-bar-text,
+    .im-page .final-warning,
+    .im-page .trust-badge-name,
+    .im-page .trust-badge-sub { color: #e2e8f0 !important; }
+
+    /* Green text overrides */
+    .im-page .section-label,
+    .im-page .hero-pre,
+    .im-page .logo-text span,
+    .im-page .bio-title,
+    .im-page .bio-stat .val,
+    .im-page .big-stat .number,
+    .im-page .award-content h2 span,
+    .im-page .ai-apps-label,
+    .im-page .ai-app-badge,
+    .im-page .ai-app-tags span,
+    .im-page .bio-photo-badge,
+    .im-page .green-text { color: #00c853 !important; }
+
+    /* Gold text overrides */
+    .im-page .trust-badge-text,
+    .im-page .gold-label,
+    .im-page .award-stat .val { color: #ffc107 !important; }
+
+    /* Gray text overrides for secondary content */
+    .im-page .section-sub,
+    .im-page .learn-card p,
+    .im-page .ai-app-info p,
+    .im-page .proof-caption,
+    .im-page .award-content p,
+    .im-page .bio-stat .lbl,
+    .im-page .big-stat .label,
+    .im-page .award-stat .lbl,
+    .im-page .footer-logo,
+    .im-page footer p { color: #a0aec0 !important; }
+
+    /* Hero sub text */
+    .im-page .hero-sub { color: #e2e8f0 !important; }
+
+    /* CTA button text */
+    .im-page .scroll-cta-btn { color: #0a0e1a !important; }
+    .im-page .cta-bar-text { color: #e2e8f0 !important; }
+    .im-page .seats-note { color: #ff6b6b !important; }
+    .im-page .final-privacy { color: #a0aec0 !important; }
+    .im-page .new-badge { color: #0a0e1a !important; }
+
+    .im-page *, .im-page *::before, .im-page *::after { box-sizing: border-box; }
+    .im-page { margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0a0e1a;
+      --navy2:   #0f1525;
+      --navy3:   #141c30;
+      --green:   #00c853;
+      --green2:  #00e676;
+      --gold:    #ffc107;
+      --white:   #ffffff;
+      --gray:    #a0aec0;
+      --light:   #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ─── TOP BAR ─── */
+    .top-bar {
+      background: var(--green);
+      text-align: center;
+      padding: 10px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: var(--navy);
+      text-transform: uppercase;
+    }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      background: var(--navy);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .logo-text span { color: var(--green); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, #0a0e1a 0%, #0f1a2e 50%, #0a0e1a 100%);
+      padding: 70px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,200,83,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .hero-pre {
+      display: inline-block;
+      background: rgba(0,200,83,0.15);
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--green); }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--light);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,193,7,0.08);
+      border: 1px solid rgba(255,193,7,0.3);
+      border-radius: 8px;
+      padding: 12px 18px;
+    }
+    .trust-badge img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .trust-badge-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1.4;
+    }
+    .trust-badge-text span {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,193,7,0.7);
+      margin-top: 2px;
+    }
+
+    /* ─── WEBINARFUEL BOX ─── */
+    .wf-box {
+      background: var(--navy2);
+      border: 1px solid rgba(0,200,83,0.25);
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,83,0.1);
+    }
+    .wf-box h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      text-align: center;
+      margin-bottom: 6px;
+      color: var(--white);
+    }
+    .wf-box .seats-warning {
+      text-align: center;
+      font-size: 13px;
+      color: #ff6b6b;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .seats-warning::before { content: '⚠'; font-size: 14px; }
+
+    /* Style the WebinarFuel widget to match our dark theme */
+    .wf_target { width: 100%; }
+
+    .wf-box .optin-privacy {
+      text-align: center;
+      font-size: 11px;
+      color: var(--gray);
+      margin-top: 14px;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { padding: 80px 20px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(26px, 3.5vw, 40px);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--gray);
+      max-width: 700px;
+      line-height: 1.7;
+    }
+    .divider {
+      width: 60px; height: 4px;
+      background: var(--green);
+      border-radius: 2px;
+      margin: 16px 0 40px;
+    }
+
+    /* ─── WHAT YOU'LL LEARN ─── */
+    .learn-section { background: var(--navy2); }
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .learn-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .learn-card:hover {
+      border-color: rgba(0,200,83,0.3);
+      transform: translateY(-4px);
+    }
+    .learn-card .icon {
+      width: 48px; height: 48px;
+      background: rgba(0,200,83,0.12);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    .learn-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+    .learn-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+    .learn-card.featured {
+      border-color: rgba(0,200,83,0.4);
+      background: linear-gradient(135deg, rgba(0,200,83,0.05), var(--navy3));
+    }
+    .learn-card.featured .icon { background: rgba(0,200,83,0.2); }
+    .new-badge {
+      display: inline-block;
+      background: var(--green);
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    /* ─── AI SOFTWARE SECTION ─── */
+    .ai-section {
+      background: var(--navy3);
+      border-top: 1px solid rgba(0,200,83,0.12);
+      border-bottom: 1px solid rgba(0,200,83,0.12);
+    }
+    .ai-header { margin-bottom: 48px; }
+    .ai-apps-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 24px;
+    }
+    .ai-apps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .ai-app-card {
+      background: var(--navy2);
+      border: 1px solid rgba(0,200,83,0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .ai-app-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,200,83,0.45);
+    }
+    .ai-app-badge {
+      background: rgba(0,200,83,0.12);
+      border-bottom: 1px solid rgba(0,200,83,0.2);
+      padding: 10px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .ai-app-screen {
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .ai-app-screen img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .ai-app-card:hover .ai-app-screen img { transform: scale(1.02); }
+    .ai-app-info { padding: 24px; }
+    .ai-app-info h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+    .ai-app-info p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .ai-app-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .ai-app-tags span {
+      background: rgba(0,200,83,0.08);
+      border: 1px solid rgba(0,200,83,0.2);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .ai-cta-strip {
+      margin-top: 40px;
+      background: linear-gradient(135deg, rgba(0,200,83,0.08), rgba(0,200,83,0.04));
+      border: 1px solid rgba(0,200,83,0.2);
+      border-radius: 12px;
+      padding: 24px 32px;
+      text-align: center;
+    }
+    .ai-cta-strip p {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--light);
+      line-height: 1.6;
+    }
+    @media (max-width: 760px) {
+      .ai-apps-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── PROOF SECTION ─── */
+    .proof-section { background: var(--navy); }
+    .proof-headline-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+    .proof-headline-wrap > div:first-child { flex: 1; min-width: 260px; }
+    .big-stat {
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(0,200,83,0.1), rgba(0,200,83,0.05));
+      border: 1px solid rgba(0,200,83,0.3);
+      border-radius: 12px;
+      padding: 24px 32px;
+      text-align: center;
+    }
+    .big-stat .number {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 42px;
+      color: var(--green);
+      line-height: 1;
+    }
+    .big-stat .label { font-size: 13px; color: var(--gray); margin-top: 6px; }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .proof-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .proof-card:hover {
+      transform: scale(1.02);
+      border-color: rgba(0,200,83,0.3);
+    }
+    .proof-card img { width: 100%; display: block; filter: brightness(0.85) contrast(1.05); border-radius: 8px; }
+    .proof-card.featured { grid-column: span 2; }
+    .proof-caption {
+      text-align: center;
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 28px;
+      font-style: italic;
+    }
+
+    /* ─── AWARD SECTION ─── */
+    .award-section {
+      background: linear-gradient(135deg, #0f1a2e, #0a0e1a);
+      border-top: 1px solid rgba(255,193,7,0.15);
+      border-bottom: 1px solid rgba(255,193,7,0.15);
+    }
+    .award-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .award-img {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .award-img img { width: 100%; display: block; }
+    .award-content .gold-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .award-content h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .award-content p {
+      font-size: 16px;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .award-stat-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .award-stat {
+      background: rgba(255,193,7,0.08);
+      border: 1px solid rgba(255,193,7,0.2);
+      border-radius: 8px;
+      padding: 14px 20px;
+      text-align: center;
+    }
+    .award-stat .val {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--gold);
+    }
+    .award-stat .lbl { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-section { background: var(--navy2); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .testimonial-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,200,83,0.25);
+    }
+    .testimonial-card img { width: 100%; display: block; }
+
+    /* ─── HOST BIO ─── */
+    .bio-section { background: var(--navy); }
+    .bio-inner {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+    .bio-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .bio-photo img { width: 100%; display: block; }
+    .bio-photo-badge {
+      position: absolute;
+      bottom: 20px; left: 20px; right: 20px;
+      background: rgba(10,14,26,0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,200,83,0.3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+      text-align: center;
+    }
+    .bio-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 42px);
+      margin-bottom: 6px;
+    }
+    .bio-title {
+      font-size: 15px;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .bio-content p {
+      font-size: 16px;
+      color: var(--light);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .bio-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--white);
+      border-left: 4px solid var(--green);
+      padding-left: 16px;
+      margin-top: 24px;
+      line-height: 1.5;
+    }
+    .bio-stats { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 28px; }
+    .bio-stat {
+      background: var(--navy2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 14px 20px;
+      text-align: center;
+    }
+    .bio-stat .val {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--green);
+    }
+    .bio-stat .lbl { font-size: 11px; color: var(--gray); margin-top: 3px; }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta {
+      background: linear-gradient(135deg, #0a1a0f, #0a0e1a);
+      border-top: 1px solid rgba(0,200,83,0.2);
+      text-align: center;
+      padding: 90px 20px;
+    }
+    .final-cta h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(26px, 4vw, 44px);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .final-cta h2 span { color: var(--green); }
+    .final-cta > .section-inner > p {
+      font-size: 16px;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .final-wf-wrap {
+      max-width: 520px;
+      margin: 0 auto;
+      background: var(--navy2);
+      border: 1px solid rgba(0,200,83,0.25);
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .final-wf-wrap .seats-warning {
+      text-align: center;
+      font-size: 13px;
+      color: #ff6b6b;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ─── SCROLL CTA BUTTONS ─── */
+    .scroll-cta-btn {
+      display: inline-block;
+      padding: 18px 36px;
+      background: linear-gradient(135deg, #00c853, #00e676);
+      color: var(--navy);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,200,83,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .scroll-cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(0,200,83,0.55);
+    }
+    .scroll-cta-btn--large {
+      padding: 22px 48px;
+      font-size: 17px;
+      box-shadow: 0 10px 40px rgba(0,200,83,0.4);
+    }
+
+    /* ─── CTA BAR ─── */
+    .cta-bar {
+      background: var(--navy2);
+      border-top: 1px solid rgba(0,200,83,0.15);
+      border-bottom: 1px solid rgba(0,200,83,0.15);
+      padding: 28px 20px;
+    }
+    .cta-bar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cta-bar-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--light);
+    }
+
+    /* ─── FINAL BTN WRAP ─── */
+    .final-btn-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .seats-note {
+      font-size: 14px;
+      color: #ff6b6b;
+      font-weight: 600;
+    }
+    .final-privacy {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    @media (max-width: 600px) {
+      .cta-bar-inner { flex-direction: column; text-align: center; }
+      .scroll-cta-btn--large { padding: 18px 28px; font-size: 15px; }
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #060810;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+    }
+    .footer-logo span { color: rgba(0,200,83,0.6); }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .award-inner { grid-template-columns: 1fr; }
+      .bio-inner { grid-template-columns: 1fr; }
+      .bio-photo { max-width: 340px; margin: 0 auto; }
+      .proof-card.featured { grid-column: span 1; }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 50px 16px 60px; }
+      section { padding: 60px 16px; }
+      .proof-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- Hyros Tracking -->
+  <script>
+  var head = document.head;
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = "https://175481.t.hyros.com/v1/lst/universal-script?ph=f8826bee9debb7572489d987a8a840bfabd3398673d6b657b8c72ad99c074c01&tag=!clicked&ref_url=" + encodeURI(document.URL);
+  head.appendChild(script);
+  </script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '3239229549609086');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=3239229549609086&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Ontraport Tracking -->
+  <script src='https://optassets.ontraport.com/tracking.js' type='text/javascript' async='true' onload='_mri="22840",_mr_domain="rei.ontraport.com",mrtracking();'></script>
+
+</head>
+<body>
+<div class="im-page">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">⚡ Free Masterclass — Limited To 200 Seats — Register Now Before It Fills Up</div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/nDoanlxqJAUimPGk.png" alt="Internet Moguls" style="height:50px;width:auto;display:block;">
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-pre">Free Masterclass — Register Now</div>
+        <h1>How To Scale Your <span>Yearly Income</span> Into Your <span>Monthly Income</span> With Evergreen Webinars</h1>
+        <p class="hero-sub">Discover the One-To-Many Sales System that generates daily sales — even if you don't have a big audience, don't know how to sell your course or coaching, or have never run a webinar before.</p>
+
+        <div class="trust-badge">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/kieGgpFnVkXOwLst.JPG" alt="Two Comma Club Award" />
+          <div class="trust-badge-text">
+            ClickFunnels Two Comma Club Award Winner
+            <span>Awarded for generating over $1,000,000 with a single auto webinar funnel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEBINARFUEL REGISTRATION BOX -->
+      <div class="wf-box" id="register">
+        <h3>Reserve Your Free Seat Now</h3>
+        <div class="seats-warning">Limited 200 Seats Available — Filling Fast</div>
+
+        <div class="wf_target wf_target_pfzzDFqxCHWd36JKSfigEN2B"></div>
+        <script>
+          window._wf = window._wf || [];
+          _wf.push({ id: 'pfzzDFqxCHWd36JKSfigEN2B' });
+        </script>
+
+        <p class="optin-privacy" style="text-align:center;font-size:11px;color:#a0aec0;margin-top:14px;">
+          🔒 100% Free. No Credit Card Required. Unsubscribe Anytime.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BUTTON 1 — After Hero -->
+  <div class="cta-bar">
+    <div class="cta-bar-inner">
+      <p class="cta-bar-text">Seats are filling up fast — secure your spot before they're gone.</p>
+      <a href="#register" class="scroll-cta-btn">YES, CLAIM MY FREE SEAT NOW →</a>
+    </div>
+  </div>
+
+  <!-- WHAT YOU'LL LEARN -->
+  <section class="learn-section">
+    <div class="section-inner">
+      <div class="section-label">Inside This Free Training</div>
+      <h2 class="section-title">Here's Exactly What You'll Discover:</h2>
+      <div class="divider"></div>
+
+      <div class="learn-grid">
+        <div class="learn-card">
+          <div class="icon">🎯</div>
+          <h4>The One-To-Many Sales System</h4>
+          <p>How to stop trading time for money with 1-on-1 calls and instead sell to hundreds of people simultaneously using a fully automated webinar that runs 24/7 without you.</p>
+        </div>
+
+        <div class="learn-card">
+          <div class="icon">📈</div>
+          <h4>No Big Audience? No Problem</h4>
+          <p>The exact paid traffic strategy used to drive qualified buyers into the webinar funnel every single day — without needing a massive following or years of content creation.</p>
+        </div>
+
+        <div class="learn-card">
+          <div class="icon">💰</div>
+          <h4>Predictable Daily Cash Flow</h4>
+          <p>How to build a system that generates consistent, predictable revenue every day — turning your yearly income goal into what you make every single month.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AI SOFTWARE SHOWCASE SECTION -->
+  <section class="ai-section">
+    <div class="section-inner">
+      <div class="ai-header">
+        <div class="new-badge" style="font-size:12px;padding:5px 12px;">🔥 New in 2026</div>
+        <div class="section-label" style="margin-top:12px;">Exclusive Bonus Training</div>
+        <h2 class="section-title">How To Build AI Software In One Day To Sell</h2>
+        <div class="divider"></div>
+        <p class="section-sub">One of the biggest shifts happening right now is that the highest-earning course creators aren't just selling education anymore — they're selling <strong style="color:var(--white);">systems powered by AI software they built without any coding or technical skills.</strong> Inside this training, you'll learn how to use AI to build your own custom software tools to bundle with your course or coaching program — even if you've never written a single line of code.</p>
+      </div>
+
+      <div class="ai-apps-label">Real AI Apps Built For Clients — No Code Required:</div>
+
+      <div class="ai-apps-grid">
+        <div class="ai-app-card">
+          <div class="ai-app-badge">App #1 — Built For Client Felix</div>
+          <div class="ai-app-screen">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/CvPDGegIMkiyHpVj.png" alt="StripScout AI - Built for Felix" />
+          </div>
+          <div class="ai-app-info">
+            <h4>StripScout AI</h4>
+            <p>A custom AI-powered deal evaluation tool for diabetic test strip trading — complete with fraud detection, SMS alerts, a pricing calculator, and vendor management. Built in one day. Zero code written.</p>
+            <div class="ai-app-tags">
+              <span>AI Deal Evaluator</span>
+              <span>Fraud Guard</span>
+              <span>SMS Alerts</span>
+              <span>Calculator</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-app-card">
+          <div class="ai-app-badge">App #2 — Built For Joe &amp; Lisa</div>
+          <div class="ai-app-screen">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/BRkONmqwMbEiPEnB.png" alt="AI Laundromat Sniper - Built for Joe and Lisa" />
+          </div>
+          <div class="ai-app-info">
+            <h4>AI Laundromat Sniper</h4>
+            <p>A fully functional AI-powered laundromat acquisition tool with location scoring, radius scanning, investment analysis, and a built-in AI advisor. Built in one day. Zero code written.</p>
+            <div class="ai-app-tags">
+              <span>AI Location Score</span>
+              <span>Radius Scanner</span>
+              <span>Buy Box Generator</span>
+              <span>Map View</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-cta-strip">
+        <p>You'll learn exactly how to build tools like these — and include them with your course or coaching offer — inside this free masterclass.</p>
+        <a href="#register" class="scroll-cta-btn" style="display:inline-block;margin-top:20px;">RESERVE MY FREE SEAT NOW →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF SECTION -->
+  <section class="proof-section">
+    <div class="section-inner">
+      <div class="proof-headline-wrap">
+        <div>
+          <div class="section-label">Real Results. Real Numbers.</div>
+          <h2 class="section-title">The System That Has Generated<br/><span style="color:var(--green)">Over $7.4 Million In Revenue</span></h2>
+          <div class="divider"></div>
+          <p class="section-sub">These are real screenshots from real accounts. The automated webinar system you'll learn on this masterclass is the exact same system behind every one of these numbers.</p>
+        </div>
+        <div class="big-stat">
+          <div class="number">$7.4M+</div>
+          <div class="label">Total Revenue Generated</div>
+          <div style="margin-top:12px;font-size:12px;color:var(--gray);">21,990+ Sales</div>
+        </div>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof-card featured">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/OEijEDtlzajAYZqw.png" alt="$7.4M Revenue Dashboard" />
+        </div>
+        <div class="proof-card">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/JeiCUBhwGFTOUPBX.png" alt="$1.3M Revenue" />
+        </div>
+        <div class="proof-card">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/FmFnUMCimvPcXIBy.png" alt="$54K Revenue Feb 2026" />
+        </div>
+        <div class="proof-card">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/FiXhaDUwPGwHfyWV.png" alt="$101K Revenue Jan 2025" />
+        </div>
+        <div class="proof-card">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/NrdKUDnWIwBFSRTe.png" alt="$62K Revenue Mar 2026" />
+        </div>
+      </div>
+      <p class="proof-caption">Real revenue data from implementing the exact automated webinar strategies taught in this masterclass.</p>
+    </div>
+  </section>
+
+  <!-- AWARD SECTION -->
+  <section class="award-section">
+    <div class="section-inner award-inner">
+      <div class="award-img">
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/kieGgpFnVkXOwLst.JPG" alt="Chris Bruce receiving ClickFunnels Two Comma Club Award" />
+      </div>
+      <div class="award-content">
+        <div class="gold-label">⭐ ClickFunnels Recognition</div>
+        <h2>Awarded The Two Comma Club For Generating Over $1,000,000 With A Single Auto Webinar Funnel</h2>
+        <p>This isn't theory. Chris Bruce was personally recognized on stage at ClickFunnels' Funnel Hacking Live event for building and scaling a single automated webinar funnel past the $1,000,000 mark. The same system is what you'll learn inside this free masterclass.</p>
+        <div class="award-stat-row">
+          <div class="award-stat">
+            <div class="val">8-Figure</div>
+            <div class="lbl">Digital Product Sales</div>
+          </div>
+          <div class="award-stat">
+            <div class="val">7-Figure</div>
+            <div class="lbl">Marketing Agency</div>
+          </div>
+          <div class="award-stat">
+            <div class="val">10+ Yrs</div>
+            <div class="lbl">Online Since 2014</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="section-inner">
+      <div class="section-label">Who This Works For</div>
+      <h2 class="section-title">Entrepreneurs Across Every Niche Are Using This System</h2>
+      <div class="divider"></div>
+      <p class="section-sub">From estheticians to real estate investors, from fitness coaches to financial educators — the automated webinar system works for any expert who has knowledge to sell.</p>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/BxtZnWLbZlUWoEQg.png" alt="Elaine Essien - Esthetician Business Consultant" />
+        </div>
+        <div class="testimonial-card">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/wHtkDxKVzyMDLFfj.png" alt="Eli - Real Estate Entrepreneur" />
+        </div>
+        <div class="testimonial-card">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/CktdUedfsKQqVsFP.png" alt="Hannah Ingram - Entrepreneur" />
+        </div>
+        <div class="testimonial-card">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/ZVrRBmcRcyTeeKyt.png" alt="Mobile Home Mami" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOST BIO -->
+  <section class="bio-section">
+    <div class="section-inner bio-inner">
+      <div class="bio-photo">
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/YDtlwXTWfrbNJeiH.jpg" alt="Chris Bruce" />
+        <div class="bio-photo-badge">Your Host — Chris Bruce</div>
+      </div>
+      <div class="bio-content">
+        <div class="section-label">Meet Your Host</div>
+        <h2 class="bio-name">Chris Bruce</h2>
+        <div class="bio-title">7-Figure Agency Owner · Digital Marketer · Auto Webinar Expert</div>
+
+        <p>You'll be learning from a digital marketer who started selling online courses in 2014. Today, Chris runs a 7-figure marketing agency that helps coaches and course creators turn their yearly income into their monthly income with auto webinars and paid ads.</p>
+
+        <p>Over the last decade, he has built and scaled multiple online coaches' businesses, generated 8-figures in digital product sales, and helped clients create predictable daily cash flow using his automated webinar system.</p>
+
+        <div class="bio-tagline">
+          "If you want strategy over hype, systems over stress, and scale over struggle — you're in the right place."
+        </div>
+
+        <div class="bio-stats">
+          <div class="bio-stat">
+            <div class="val">$7.4M+</div>
+            <div class="lbl">Revenue Generated</div>
+          </div>
+          <div class="bio-stat">
+            <div class="val">10+ Yrs</div>
+            <div class="lbl">Online Since 2014</div>
+          </div>
+          <div class="bio-stat">
+            <div class="val">8-Fig</div>
+            <div class="lbl">Digital Sales</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="section-inner">
+      <h2>Ready To Turn Your <span>Yearly Income</span><br/>Into Your <span>Monthly Income?</span></h2>
+      <p>Warning: Seats are strictly limited to 200 per session to ensure quality streaming. Once they're gone, they're gone.</p>
+
+      <div class="final-btn-wrap">
+        <p class="seats-note">⚠ Only a limited number of seats remain — Register now to secure your spot.</p>
+        <a href="#register" class="scroll-cta-btn scroll-cta-btn--large">YES, RESERVE MY FREE SEAT NOW →</a>
+        <p class="final-privacy">🔒 100% Free. No Credit Card Required. Unsubscribe Anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/nDoanlxqJAUimPGk.png" alt="Internet Moguls" style="height:45px;width:auto;display:block;margin:0 auto;">
+    <p>Internet Moguls © 2026 All Rights Reserved.</p>
+  </footer>
+
+</div><!-- /.im-page -->
+</body>
+</html>
