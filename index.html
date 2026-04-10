@@ -817,6 +817,8 @@
   (function() {
     var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    // Allowed days: Sun=0, Mon=1, Tue=2, Wed=3, Thu=4 (skip Fri=5, Sat=6)
+    var ALLOWED_DAYS = [0, 1, 2, 3, 4];
 
     function getTargetDate() {
       // Get current time in EDT (UTC-4)
@@ -825,13 +827,22 @@
       var utc = now.getTime() + now.getTimezoneOffset() * 60000;
       var edt = new Date(utc + edtOffset * 60000);
 
-      // Target is 3pm EDT today
+      // Try today at 8pm EDT first
       var target = new Date(edt);
-      target.setHours(15, 0, 0, 0);
+      target.setHours(20, 0, 0, 0);
 
-      // If it's already past 3pm EDT, use tomorrow
-      if (edt >= target) {
+      // If today is allowed and 8pm hasn't passed yet, use today
+      if (ALLOWED_DAYS.indexOf(target.getDay()) !== -1 && edt < target) {
+        return { target: target, edt: edt };
+      }
+
+      // Otherwise find the next allowed day
+      target.setDate(target.getDate() + 1);
+      target.setHours(20, 0, 0, 0);
+      var safety = 0;
+      while (ALLOWED_DAYS.indexOf(target.getDay()) === -1 && safety < 7) {
         target.setDate(target.getDate() + 1);
+        safety++;
       }
 
       return { target: target, edt: edt };
@@ -844,12 +855,12 @@
       var target = res.target;
       var edt = res.edt;
 
-      // Format date label: e.g. "THURSDAY, APRIL 10 @ 3:00 PM EDT"
+      // Format date label: e.g. "SUNDAY, APRIL 12 @ 8:00 PM EDT"
       var dayName = DAYS[target.getDay()].toUpperCase();
       var monthName = MONTHS[target.getMonth()].toUpperCase();
       var dayNum = target.getDate();
       document.getElementById('eventDate').textContent =
-        dayName + ', ' + monthName + ' ' + dayNum + ' @ 3:00 PM EDT';
+        dayName + ', ' + monthName + ' ' + dayNum + ' @ 8:00 PM EDT';
 
       // Countdown from now (EDT) to target (EDT)
       var diff = target.getTime() - edt.getTime();
