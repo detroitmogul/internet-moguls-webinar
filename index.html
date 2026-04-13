@@ -817,7 +817,7 @@
   (function() {
     var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    var ALLOWED_DAYS = [0, 1, 2, 3, 4]; // Sun–Thu, skip Fri & Sat
+    var ALLOWED_DAYS = [1, 2, 3, 4, 5, 6]; // Mon–Sat, skip Sun only
 
     function getTargetDate() {
       var now = new Date();
