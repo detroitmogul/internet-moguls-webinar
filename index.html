@@ -871,13 +871,62 @@
     <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/yHHutYKLESCvbPao.png" alt="Internet Moguls" style="height:50px;width:auto;display:block;">
   </nav>
 
+  <!-- A/B/C SPLIT TEST SCRIPT -->
+  <script>
+  (function(){
+    var variants = [
+      {
+        id: 'a',
+        h1: 'How Online Coaches Are Hitting <span>$50-100K/Month in Profit</span> Using a Single Automated Presentation',
+        sub: 'And why almost nobody in your niche has figured this out yet.'
+      },
+      {
+        id: 'b',
+        h1: 'Stop Launching. Start Automating. <span>How Course Creators Are Using AI-Powered Auto Webinars</span> to Sell Every Day Without Going Live',
+        sub: 'The shift happening right now that most coaches are completely missing.'
+      },
+      {
+        id: 'c',
+        h1: 'The Auto Webinar System That\'s Generating <span>$50-100K/Month</span> For Course Creators in 12+ Niches',
+        sub: 'And How AI Lets You Build Yours in One Afternoon.'
+      }
+    ];
+    var key = 'im_ab_variant';
+    var stored = null;
+    try { stored = localStorage.getItem(key); } catch(e){}
+    var v;
+    if (stored && ['a','b','c'].indexOf(stored) !== -1) {
+      v = stored;
+    } else {
+      v = variants[Math.floor(Math.random() * 3)].id;
+      try { localStorage.setItem(key, v); } catch(e){}
+    }
+    // Set UTM in URL without reload
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.set('variant', v);
+      history.replaceState(null, '', url.toString());
+    } catch(e){}
+    // Apply variant content after DOM ready
+    document.addEventListener('DOMContentLoaded', function(){
+      var variant = variants.filter(function(x){ return x.id === v; })[0];
+      var h1 = document.getElementById('ab-h1');
+      var sub = document.getElementById('ab-sub');
+      if (h1) h1.innerHTML = variant.h1;
+      if (sub) sub.textContent = variant.sub;
+      // Mark variant on body for CSS targeting
+      document.body.setAttribute('data-variant', v);
+    });
+  })();
+  </script>
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-pre">Free Training — Register Now</div>
-      <h1>How Online Coaches Are Hitting <span>$50-100K/Month in Profit</span> Using a Single Automated Presentation</h1>
+      <h1 id="ab-h1">How Online Coaches Are Hitting <span>$50-100K/Month in Profit</span> Using a Single Automated Presentation</h1>
 
-      <p class="hero-sub" style="font-size:22px;color:#e2e8f0;line-height:1.6;max-width:680px;margin:0 auto 24px;font-weight:600;">And why almost nobody in your niche has figured this out yet.</p>
+      <p id="ab-sub" class="hero-sub" style="font-size:22px;color:#e2e8f0;line-height:1.6;max-width:680px;margin:0 auto 24px;font-weight:600;">And why almost nobody in your niche has figured this out yet.</p>
 
       <!-- WF CTA BUTTON #1 -->
       <div class="wf-cta-wrap" id="register" style="margin-top:0;margin-bottom:16px;">
