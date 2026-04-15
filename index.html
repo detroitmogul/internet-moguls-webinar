@@ -825,12 +825,12 @@
       var utc = now.getTime() + now.getTimezoneOffset() * 60000;
       var edt = new Date(utc + edtOffset * 60000);
       var target = new Date(edt);
-      target.setHours(12, 0, 0, 0);
+      target.setHours(20, 0, 0, 0);
       if (ALLOWED_DAYS.indexOf(target.getDay()) !== -1 && edt < target) {
         return { target: target, edt: edt };
       }
       target.setDate(target.getDate() + 1);
-      target.setHours(12, 0, 0, 0);
+      target.setHours(20, 0, 0, 0);
       var safety = 0;
       while (ALLOWED_DAYS.indexOf(target.getDay()) === -1 && safety < 7) {
         target.setDate(target.getDate() + 1);
@@ -849,7 +849,7 @@
       var monthName = MONTHS[target.getMonth()].toUpperCase();
       var dayNum = target.getDate();
       document.getElementById('eventDate').textContent =
-        dayName + ', ' + monthName + ' ' + dayNum + ' @ 12:00 PM EDT';
+        dayName + ', ' + monthName + ' ' + dayNum + ' @ 8:00 PM EDT';
       var diff = target.getTime() - edt.getTime();
       if (diff < 0) diff = 0;
       var totalSec = Math.floor(diff / 1000);
