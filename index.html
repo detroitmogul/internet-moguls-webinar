@@ -1147,6 +1147,17 @@
       if (sub) sub.textContent = variant.sub;
       // Mark variant on body for CSS targeting
       document.body.setAttribute('data-variant', v);
+      // ─ Fire impression (visit) tracking
+      var sid = localStorage.getItem('im_session_id');
+      if (!sid) {
+        sid = Math.random().toString(36).substr(2,12);
+        try { localStorage.setItem('im_session_id', sid); } catch(e){}
+      }
+      fetch('https://abtracker-mras8ygu.manus.space/api/trpc/track.impression', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ json: { variant: v, sessionId: sid } })
+      }).catch(function(){});
     });
   })();
   </script>
