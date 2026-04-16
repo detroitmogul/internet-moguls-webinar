@@ -8,8 +8,7 @@
   <link rel="apple-touch-icon" href="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/iadPwgnsRijfEduI.png" />
   <meta property="og:image" content="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/iadPwgnsRijfEduI.png" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- WebinarFuel -->
-  <script src="https://d3pw37i36t41cq.cloudfront.net/embed_v2.js" async></script>
+  <!-- Custom Registration Modal Styles -->
   <style>
     :root {
       --navy:    #0a0e1a;
@@ -182,21 +181,44 @@
       100% { transform: translateX(220%) skewX(-20deg); opacity: 0; }
     }
 
-    /* WF CTA wrapper — centered */
-    .wf-cta-wrap {
+    /* ─── CUSTOM CTA BUTTON ─── */
+    .reg-btn-wrap {
       display: flex;
       justify-content: center;
-      margin: 0 auto 32px;
-      max-width: 520px;
+      margin: 0 auto 16px;
     }
-    .wf-cta-wrap .wf_target { width: 100%; }
-
-    /* Glimmer applied to WF buttons via JS */
-    .wf-glimmer {
+    .reg-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--green);
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.3px;
+      padding: 20px 44px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
       position: relative;
       overflow: hidden;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(0,200,83,0.35);
+      min-width: 320px;
+      max-width: 100%;
     }
-    .wf-glimmer::after {
+    .reg-btn:hover {
+      background: var(--green2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(0,200,83,0.55);
+    }
+    .reg-btn:active {
+      transform: translateY(0);
+    }
+    .reg-btn::after {
       content: '';
       position: absolute;
       top: 0; left: 0;
@@ -205,13 +227,217 @@
       background: linear-gradient(
         90deg,
         transparent 0%,
-        rgba(255,255,255,0.38) 50%,
+        rgba(255,255,255,0.45) 50%,
         transparent 100%
       );
       animation: glimmer 2.8s ease-in-out infinite;
       pointer-events: none;
       border-radius: inherit;
       z-index: 10;
+    }
+    .reg-btn .btn-arrow {
+      font-size: 20px;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+    .reg-btn:hover .btn-arrow { transform: translateX(4px); }
+    @media (max-width: 600px) {
+      .reg-btn { font-size: 16px; padding: 18px 28px; min-width: 0; width: 100%; }
+    }
+
+    /* ─── REGISTRATION MODAL ─── */
+    .reg-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(6px);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .reg-modal-overlay.open {
+      display: flex;
+    }
+    .reg-modal {
+      background: #0f1525;
+      border: 1px solid rgba(0,200,83,0.3);
+      border-radius: 20px;
+      padding: 44px 40px 40px;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,200,83,0.1);
+      animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.92) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .reg-modal-close {
+      position: absolute;
+      top: 16px; right: 18px;
+      background: rgba(255,255,255,0.07);
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 20px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      line-height: 1;
+    }
+    .reg-modal-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+    .reg-modal-icon {
+      width: 56px; height: 56px;
+      background: rgba(0,200,83,0.15);
+      border: 1px solid rgba(0,200,83,0.35);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 26px;
+    }
+    .reg-modal h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .reg-modal .modal-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    .reg-field {
+      margin-bottom: 16px;
+    }
+    .reg-field label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 7px;
+    }
+    .reg-field input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+    }
+    .reg-field input::placeholder { color: rgba(255,255,255,0.3); }
+    .reg-field input:focus {
+      border-color: var(--green);
+      background: rgba(0,200,83,0.06);
+    }
+    .reg-phone-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: rgba(0,200,83,0.07);
+      border: 1px solid rgba(0,200,83,0.2);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 22px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+    .reg-phone-note .note-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .reg-submit {
+      width: 100%;
+      background: var(--green);
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      padding: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,200,83,0.35);
+      letter-spacing: 0.2px;
+    }
+    .reg-submit:hover {
+      background: var(--green2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(0,200,83,0.5);
+    }
+    .reg-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .reg-submit::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+      animation: glimmer 2.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .reg-privacy {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+    .reg-error {
+      background: rgba(229,57,53,0.12);
+      border: 1px solid rgba(229,57,53,0.35);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: #ff6b6b;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .reg-success {
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+    .reg-success .success-icon {
+      font-size: 52px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .reg-success h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .reg-success p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+    @media (max-width: 520px) {
+      .reg-modal { padding: 36px 22px 30px; border-radius: 16px; }
+      .reg-modal h3 { font-size: 19px; }
     }
 
     .hero-sub {
@@ -928,13 +1154,11 @@
 
       <p id="ab-sub" class="hero-sub" style="font-size:22px;color:#e2e8f0;line-height:1.6;max-width:680px;margin:0 auto 24px;font-weight:600;">And why almost nobody in your niche has figured this out yet.</p>
 
-      <!-- WF CTA BUTTON #1 -->
-      <div class="wf-cta-wrap" id="register" style="margin-top:0;margin-bottom:16px;">
-        <div class="wf_target wf_target_1CLeAvF9cLmrT5sSdZEGHeUr"></div>
-        <script>
-          window._wf = window._wf || [];
-          _wf.push({ id: '1CLeAvF9cLmrT5sSdZEGHeUr' });
-        </script>
+      <!-- CTA BUTTON #1 -->
+      <div class="reg-btn-wrap" id="register" style="margin-top:0;">
+        <button class="reg-btn" onclick="openRegModal()">
+          Yes! Reserve My Free Spot Now <span class="btn-arrow">&rarr;</span>
+        </button>
       </div>
 
 
@@ -1059,9 +1283,11 @@
 
       <div class="bullet-close">This is the exact system. And you can see the whole thing free &mdash; in the next 60 minutes. No fluff. No filler. Just the blueprint that&rsquo;s working right now across 12+ niches.</div>
 
-      <!-- WF CTA BUTTON #2 -->
-      <div class="wf-cta-wrap">
-        <div class="wf_target wf_target_1CLeAvF9cLmrT5sSdZEGHeUr"></div>
+      <!-- CTA BUTTON #2 -->
+      <div class="reg-btn-wrap">
+        <button class="reg-btn" onclick="openRegModal()">
+          Yes! Reserve My Free Spot Now <span class="btn-arrow">&rarr;</span>
+        </button>
       </div>
       <p class="final-privacy" style="margin-top:12px;">&#128274; 100% Free. No Credit Card Required. Unsubscribe Anytime.</p>
     </div>
@@ -1177,37 +1403,153 @@
       <p style="font-family:'Open Sans',sans-serif;font-size:16px;color:rgba(255,255,255,0.9);line-height:1.7;margin:0;">Coaches pay us <strong style="color:#00c853;">$3,000&ndash;$10,000+</strong> to build this exact system for them. In this free training, you&rsquo;ll see the entire blueprint &mdash; what it is, how it works, and how to set it up yourself.</p>
     </div>
 
-    <div class="wf-cta-wrap" style="max-width:520px;margin:0 auto 16px;">
-      <div class="wf_target wf_target_1CLeAvF9cLmrT5sSdZEGHeUr"></div>
+    <!-- CTA BUTTON #3 -->
+    <div class="reg-btn-wrap" style="max-width:520px;margin:0 auto 16px;">
+      <button class="reg-btn" onclick="openRegModal()">
+        Yes! Reserve My Free Spot Now <span class="btn-arrow">&rarr;</span>
+      </button>
     </div>
     <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:12px;">&#128274; 100% Free &middot; No Credit Card &middot; Unsubscribe Anytime</p>
   </section>
 
-  <!-- GLIMMER: apply to WF buttons after embed renders -->
-  <script>
-  (function() {
-    function applyGlimmer() {
-      // Target any rendered button or anchor inside the WF target divs
-      var btns = document.querySelectorAll('.wf_target a, .wf_target button, .wf_target [role="button"], .wf_target .wf-button, .wf_target .btn');
-      btns.forEach(function(btn) {
-        if (!btn.classList.contains('wf-glimmer')) {
-          btn.classList.add('wf-glimmer');
-        }
-      });
-    }
+  <!-- REGISTRATION MODAL -->
+  <div class="reg-modal-overlay" id="regModalOverlay" onclick="handleOverlayClick(event)">
+    <div class="reg-modal" id="regModal">
+      <button class="reg-modal-close" onclick="closeRegModal()" aria-label="Close">&times;</button>
 
-    // Run on load
-    window.addEventListener('load', function() {
-      applyGlimmer();
-      // Also observe for late-rendering WF embeds
-      var observer = new MutationObserver(function() {
-        applyGlimmer();
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-      // Stop observing after 10 seconds
-      setTimeout(function() { observer.disconnect(); }, 10000);
+      <!-- Form View -->
+      <div id="regFormView">
+        <div class="reg-modal-icon">&#127891;</div>
+        <h3>Reserve Your Free Spot</h3>
+        <p class="modal-sub">Next session starts soon &mdash; claim your seat in 30 seconds.</p>
+
+        <div class="reg-error" id="regError"></div>
+
+        <div class="reg-field">
+          <label for="regName">Your Name</label>
+          <input type="text" id="regName" placeholder="First &amp; Last Name" autocomplete="name" required />
+        </div>
+        <div class="reg-field">
+          <label for="regEmail">Email Address</label>
+          <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div class="reg-field">
+          <label for="regPhone">Phone Number</label>
+          <input type="tel" id="regPhone" placeholder="(555) 000-0000" autocomplete="tel" />
+        </div>
+
+        <div class="reg-phone-note">
+          <span class="note-icon">&#128241;</span>
+          <span>We&rsquo;ll send you a <strong style="color:rgba(255,255,255,0.85);">text reminder</strong> before the webinar starts so you never miss it. Standard messaging rates may apply.</span>
+        </div>
+
+        <button class="reg-submit" id="regSubmitBtn" onclick="submitRegistration()">
+          Claim My Free Seat &rarr;
+        </button>
+        <p class="reg-privacy">&#128274; 100% Free &middot; No Credit Card &middot; We respect your privacy</p>
+      </div>
+
+      <!-- Success View -->
+      <div class="reg-success" id="regSuccessView" style="display:none;">
+        <span class="success-icon">&#9989;</span>
+        <h4>You&rsquo;re Registered!</h4>
+        <p>Check your email for confirmation details. Redirecting you to the next steps&hellip;</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGISTRATION LOGIC -->
+  <script>
+  // Modal open/close
+  function openRegModal() {
+    document.getElementById('regModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ document.getElementById('regName').focus(); }, 100);
+  }
+  function closeRegModal() {
+    document.getElementById('regModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('regModalOverlay')) closeRegModal();
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeRegModal();
+  });
+
+  // Allow Enter key in fields to submit
+  ['regName','regEmail','regPhone'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', function(e){ if(e.key==='Enter') submitRegistration(); });
+  });
+
+  // WebinarFuel OneClick registration
+  var WF_ONECLICK_KEY = 'cKdaGaZhKqSJjywDtyYfUkco';
+  var WF_SESSION_ID   = '70895';
+
+  function submitRegistration() {
+    var nameVal  = (document.getElementById('regName').value  || '').trim();
+    var emailVal = (document.getElementById('regEmail').value || '').trim();
+    var phoneVal = (document.getElementById('regPhone').value || '').trim();
+    var errEl    = document.getElementById('regError');
+    var btn      = document.getElementById('regSubmitBtn');
+
+    // Validation
+    errEl.style.display = 'none';
+    if (!nameVal) { showError('Please enter your name.'); return; }
+    if (!emailVal || !/^[^@]+@[^@]+\.[^@]+$/.test(emailVal)) { showError('Please enter a valid email address.'); return; }
+
+    // Split name
+    var parts     = nameVal.split(' ');
+    var firstName = parts[0];
+    var lastName  = parts.slice(1).join(' ') || '.';
+
+    // Disable button
+    btn.disabled = true;
+    btn.textContent = 'Reserving Your Seat…';
+
+    // Fire A/B click tracking
+    try {
+      var variant = localStorage.getItem('im_ab_variant') || 'a';
+      var sid = localStorage.getItem('im_session_id') || (function(){
+        var s = Math.random().toString(36).substr(2,12);
+        try { localStorage.setItem('im_session_id', s); } catch(e){}
+        return s;
+      })();
+      fetch('https://abtracker-mras8ygu.manus.space/api/trpc/track.click', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ json: { variant: variant, sessionId: sid } })
+      }).catch(function(){});
+    } catch(e){}
+
+    // Build OneClick URL
+    var params = new URLSearchParams({
+      oneclick_key: WF_ONECLICK_KEY,
+      email:        emailVal,
+      first_name:   firstName,
+      last_name:    lastName,
+      webinar_session_id: WF_SESSION_ID
     });
-  })();
+    if (phoneVal) params.set('phone', phoneVal);
+
+    // Show success then redirect
+    document.getElementById('regFormView').style.display = 'none';
+    document.getElementById('regSuccessView').style.display = 'block';
+
+    setTimeout(function(){
+      window.location.href = 'https://api.webinarfuel.com/oneclick?' + params.toString();
+    }, 1200);
+  }
+
+  function showError(msg) {
+    var errEl = document.getElementById('regError');
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+    var btn = document.getElementById('regSubmitBtn');
+    btn.disabled = false;
+    btn.textContent = 'Claim My Free Seat →';
+  }
   </script>
 
   <!-- FOOTER -->
