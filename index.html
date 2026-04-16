@@ -1460,7 +1460,42 @@
 
   <!-- REGISTRATION LOGIC -->
   <script>
-  // Modal open/close
+  // ─ Config
+  var WF_ONECLICK_KEY = 'cKdaGaZhKqSJjywDtyYfUkco';
+  var WF_SESSION_ID   = '70895';
+  var AB_TRACKER_URL  = 'https://abtracker-mras8ygu.manus.space';
+
+  // ─ Capture visitor IP on page load (async, non-blocking)
+  var _visitorIp = '';
+  fetch('https://api.ipify.org?format=json')
+    .then(function(r){ return r.json(); })
+    .then(function(d){ _visitorIp = d.ip || ''; })
+    .catch(function(){});
+
+  // ─ Capture UTM params from URL
+  function getUtms() {
+    var sp = new URLSearchParams(window.location.search);
+    return {
+      utm_source:   sp.get('utm_source')   || '',
+      utm_medium:   sp.get('utm_medium')   || '',
+      utm_campaign: sp.get('utm_campaign') || '',
+      utm_term:     sp.get('utm_term')     || '',
+      utm_content:  sp.get('utm_content')  || ''
+    };
+  }
+
+  // ─ Get/create stable session + variant
+  function getSession() {
+    var variant = localStorage.getItem('im_ab_variant') || 'a';
+    var sid = localStorage.getItem('im_session_id');
+    if (!sid) {
+      sid = Math.random().toString(36).substr(2,12);
+      try { localStorage.setItem('im_session_id', sid); } catch(e){}
+    }
+    return { variant: variant, sid: sid };
+  }
+
+  // ─ Modal open/close
   function openRegModal() {
     document.getElementById('regModalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1473,20 +1508,22 @@
   function handleOverlayClick(e) {
     if (e.target === document.getElementById('regModalOverlay')) closeRegModal();
   }
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') closeRegModal();
-  });
-
-  // Allow Enter key in fields to submit
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeRegModal(); });
   ['regName','regEmail','regPhone'].forEach(function(id){
     var el = document.getElementById(id);
     if (el) el.addEventListener('keydown', function(e){ if(e.key==='Enter') submitRegistration(); });
   });
 
-  // WebinarFuel OneClick registration
-  var WF_ONECLICK_KEY = 'cKdaGaZhKqSJjywDtyYfUkco';
-  var WF_SESSION_ID   = '70895';
+  // ─ Fire tRPC tracking helper
+  function fireTrack(procedure, payload) {
+    fetch(AB_TRACKER_URL + '/api/trpc/track.' + procedure, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ json: payload })
+    }).catch(function(){});
+  }
 
+  // ─ Submit registration
   function submitRegistration() {
     var nameVal  = (document.getElementById('regName').value  || '').trim();
     var emailVal = (document.getElementById('regEmail').value || '').trim();
@@ -1494,55 +1531,52 @@
     var errEl    = document.getElementById('regError');
     var btn      = document.getElementById('regSubmitBtn');
 
-    // Validation
     errEl.style.display = 'none';
-    if (!nameVal) { showError('Please enter your name.'); return; }
-    if (!emailVal || !/^[^@]+@[^@]+\.[^@]+$/.test(emailVal)) { showError('Please enter a valid email address.'); return; }
+    if (!nameVal) { showRegError('Please enter your name.'); return; }
+    if (!emailVal || !/^[^@]+@[^@]+\.[^@]+$/.test(emailVal)) { showRegError('Please enter a valid email address.'); return; }
 
-    // Split name
     var parts     = nameVal.split(' ');
     var firstName = parts[0];
     var lastName  = parts.slice(1).join(' ') || '.';
-
-    // Disable button
-    btn.disabled = true;
+    btn.disabled  = true;
     btn.textContent = 'Reserving Your Seat…';
 
-    // Fire A/B click tracking
-    try {
-      var variant = localStorage.getItem('im_ab_variant') || 'a';
-      var sid = localStorage.getItem('im_session_id') || (function(){
-        var s = Math.random().toString(36).substr(2,12);
-        try { localStorage.setItem('im_session_id', s); } catch(e){}
-        return s;
-      })();
-      fetch('https://abtracker-mras8ygu.manus.space/api/trpc/track.click', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ json: { variant: variant, sessionId: sid } })
-      }).catch(function(){});
-    } catch(e){}
+    var sess = getSession();
+    var utms = getUtms();
 
-    // Build OneClick URL
+    // 1. Fire A/B click tracking
+    fireTrack('click', { variant: sess.variant, sessionId: sess.sid });
+
+    // 2. Fire A/B opt-in tracking (confirmed form submit = opt-in)
+    fireTrack('optin', { variant: sess.variant, sessionId: sess.sid });
+
+    // 3. Build enriched WebinarFuel OneClick URL
     var params = new URLSearchParams({
-      oneclick_key: WF_ONECLICK_KEY,
-      email:        emailVal,
-      first_name:   firstName,
-      last_name:    lastName,
-      webinar_session_id: WF_SESSION_ID
+      oneclick_key:       WF_ONECLICK_KEY,
+      email:              emailVal,
+      first_name:         firstName,
+      last_name:          lastName,
+      webinar_session_id: WF_SESSION_ID,
+      referrer:           document.referrer || '',
+      source:             utms.utm_source || 'direct'
     });
-    if (phoneVal) params.set('phone', phoneVal);
+    if (phoneVal)          params.set('phone',        phoneVal);
+    if (_visitorIp)        params.set('ip',           _visitorIp);
+    if (utms.utm_source)   params.set('utm_source',   utms.utm_source);
+    if (utms.utm_medium)   params.set('utm_medium',   utms.utm_medium);
+    if (utms.utm_campaign) params.set('utm_campaign', utms.utm_campaign);
+    if (utms.utm_term)     params.set('utm_term',     utms.utm_term);
+    if (utms.utm_content)  params.set('utm_content',  utms.utm_content);
 
-    // Show success then redirect
-    document.getElementById('regFormView').style.display = 'none';
+    // 4. Show success then redirect to WebinarFuel (redirects to offer page)
+    document.getElementById('regFormView').style.display  = 'none';
     document.getElementById('regSuccessView').style.display = 'block';
-
     setTimeout(function(){
       window.location.href = 'https://api.webinarfuel.com/oneclick?' + params.toString();
     }, 1200);
   }
 
-  function showError(msg) {
+  function showRegError(msg) {
     var errEl = document.getElementById('regError');
     errEl.textContent = msg;
     errEl.style.display = 'block';
