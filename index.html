@@ -1059,7 +1059,7 @@
         hour12: true
       }) + ' EST';
       document.getElementById('eventDate').textContent =
-        'Next Session @ ' + timeStr + ' · Every Hour';
+        'Next Session @ ' + timeStr;
       var diff = target.getTime() - Date.now();
       if (diff < 0) diff = 0;
       var totalSec = Math.floor(diff / 1000);
