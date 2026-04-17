@@ -1095,11 +1095,6 @@
         sub: 'The shift happening right now that most coaches are completely missing.'
       },
       {
-        id: 'c',
-        h1: 'The Auto Webinar System That\'s Generating <span>$50-100K/Month</span> For Course Creators in 12+ Niches',
-        sub: 'And How AI Lets You Build Yours in One Afternoon.'
-      },
-      {
         id: 'd',
         h1: 'How People Are Making <span>$10K&ndash;$50K/Month</span> By Simply Putting A Webinar On Autopilot',
         sub: 'I\'m breaking down exactly how it works.'
@@ -1109,10 +1104,10 @@
     var stored = null;
     try { stored = localStorage.getItem(key); } catch(e){}
     var v;
-    if (stored && ['a','b','c','d'].indexOf(stored) !== -1) {
+    if (stored && ['a','b','d'].indexOf(stored) !== -1) {
       v = stored;
     } else {
-      v = variants[Math.floor(Math.random() * 4)].id;
+      v = variants[Math.floor(Math.random() * 3)].id;
       try { localStorage.setItem(key, v); } catch(e){}
     }
     // Set UTM in URL without reload
