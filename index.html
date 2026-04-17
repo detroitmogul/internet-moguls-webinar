@@ -1041,7 +1041,7 @@
 
   <script>
   (function() {
-    var INTERVAL_MINS = 15; // Sessions every 15 minutes
+    var INTERVAL_MINS = 60; // Sessions every hour
     function getNextSlot() {
       var now = Date.now();
       var msInterval = INTERVAL_MINS * 60 * 1000;
@@ -1059,7 +1059,7 @@
         hour12: true
       }) + ' EST';
       document.getElementById('eventDate').textContent =
-        'Next Session @ ' + timeStr + ' · Every 15 Min';
+        'Next Session @ ' + timeStr + ' · Every Hour';
       var diff = target.getTime() - Date.now();
       if (diff < 0) diff = 0;
       var totalSec = Math.floor(diff / 1000);
