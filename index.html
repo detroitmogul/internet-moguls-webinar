@@ -1483,12 +1483,22 @@
   var WF_SESSION_ID   = '71788';
   var AB_TRACKER_URL  = 'https://abtracker-mras8ygu.manus.space';
 
-  // ─ Capture visitor IP on page load (async, non-blocking)
+  // ─ Capture visitor IP + city on page load (async, non-blocking)
   var _visitorIp = '';
-  fetch('https://api.ipify.org?format=json')
+  var _visitorCity = '';
+  fetch('https://ipapi.co/json/')
     .then(function(r){ return r.json(); })
-    .then(function(d){ _visitorIp = d.ip || ''; })
-    .catch(function(){});
+    .then(function(d){
+      _visitorIp   = d.ip   || '';
+      _visitorCity = (d.city && d.region_code) ? (d.city + ', ' + d.region_code) : (d.city || '');
+    })
+    .catch(function(){
+      // fallback: just get IP
+      fetch('https://api.ipify.org?format=json')
+        .then(function(r){ return r.json(); })
+        .then(function(d){ _visitorIp = d.ip || ''; })
+        .catch(function(){});
+    });
 
   // ─ Capture UTM params from URL
   function getUtms() {
@@ -1573,6 +1583,12 @@
 
      // 1. Fire A/B opt-in tracking (confirmed form submit = opt-in)
     fireTrack('optin', { variant: sess.variant, sessionId: sess.sid });
+    // 2. Store registrant name + city for real social proof (fires silently)
+    if (firstName && _visitorCity) {
+      var regPayload = JSON.stringify({ json: { firstName: firstName, city: _visitorCity } });
+      var regUrl = AB_TRACKER_URL + '/api/trpc/track.registrant?input=' + encodeURIComponent(regPayload);
+      var img = new Image(); img.src = regUrl; // fire-and-forget
+    }
 
     // 3. Build enriched WebinarFuel OneClick URL
     var params = new URLSearchParams({
