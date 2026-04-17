@@ -1531,12 +1531,20 @@
   });
 
   // ─ Fire tRPC tracking helper
+  // Uses sendBeacon for optin so it survives page navigation (no race condition)
   function fireTrack(procedure, payload) {
-    fetch(AB_TRACKER_URL + '/api/trpc/track.' + procedure, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ json: payload })
-    }).catch(function(){});
+    var url  = AB_TRACKER_URL + '/api/trpc/track.' + procedure;
+    var body = JSON.stringify({ json: payload });
+    if (procedure === 'optin' && navigator.sendBeacon) {
+      var blob = new Blob([body], { type: 'application/json' });
+      navigator.sendBeacon(url, blob);
+    } else {
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: body
+      }).catch(function(){});
+    }
   }
 
   // ─ Submit registration
