@@ -1041,42 +1041,26 @@
 
   <script>
   (function() {
-    var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    var ALLOWED_DAYS = [0, 1, 2, 3, 4, 5]; // Sun–Fri, skip Sat only
-
-    function getTargetDate() {
-      var now = new Date();
-      var edtOffset = -4 * 60;
-      var utc = now.getTime() + now.getTimezoneOffset() * 60000;
-      var edt = new Date(utc + edtOffset * 60000);
-      var target = new Date(edt);
-      target.setHours(15, 0, 0, 0);
-      if (ALLOWED_DAYS.indexOf(target.getDay()) !== -1 && edt < target) {
-        return { target: target, edt: edt };
-      }
-      target.setDate(target.getDate() + 1);
-      target.setHours(15, 0, 0, 0);
-      var safety = 0;
-      while (ALLOWED_DAYS.indexOf(target.getDay()) === -1 && safety < 7) {
-        target.setDate(target.getDate() + 1);
-        safety++;
-      }
-      return { target: target, edt: edt };
+    var INTERVAL_MINS = 15; // Sessions every 15 minutes
+    function getNextSlot() {
+      var now = Date.now();
+      var msInterval = INTERVAL_MINS * 60 * 1000;
+      // Always show at least 90 seconds on the clock
+      return new Date(Math.ceil((now + 90000) / msInterval) * msInterval);
     }
-
     function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
     function updateBar() {
-      var res = getTargetDate();
-      var target = res.target;
-      var edt = res.edt;
-      var dayName = DAYS[target.getDay()].toUpperCase();
-      var monthName = MONTHS[target.getMonth()].toUpperCase();
-      var dayNum = target.getDate();
+      var target = getNextSlot();
+      // Format next slot time in EST
+      var timeStr = target.toLocaleTimeString('en-US', {
+        timeZone: 'America/New_York',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      }) + ' EST';
       document.getElementById('eventDate').textContent =
-        dayName + ', ' + monthName + ' ' + dayNum + ' @ 3:00 PM EDT';
-      var diff = target.getTime() - edt.getTime();
+        'Next Session @ ' + timeStr + ' · Every 15 Min';
+      var diff = target.getTime() - Date.now();
       if (diff < 0) diff = 0;
       var totalSec = Math.floor(diff / 1000);
       var h = Math.floor(totalSec / 3600);
@@ -1086,7 +1070,6 @@
       document.getElementById('tM').textContent = pad(m);
       document.getElementById('tS').textContent = pad(s);
     }
-
     updateBar();
     setInterval(updateBar, 1000);
   })();
