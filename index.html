@@ -1707,14 +1707,13 @@
       popup.offsetHeight; // reflow
       popup.style.animation = 'proofIn 0.4s cubic-bezier(0.34,1.56,0.64,1)';
       clearTimeout(popup._hideTimer);
-      popup._hideTimer = setTimeout(function(){ popup.style.display = 'none'; scheduleNext(); }, 5500);
+      popup._hideTimer = setTimeout(function(){ popup.style.display = 'none'; scheduleNext(); }, 4000);
     }
     function scheduleNext() {
-      var delay = 25000 + Math.random() * 50000; // 25-75 sec
-      setTimeout(showProof, delay);
+      setTimeout(showProof, 1000); // 1 second gap between notifications
     }
-    // First popup after 8-15 seconds
-    setTimeout(showProof, 8000 + Math.random() * 7000);
+    // First popup after 3 seconds
+    setTimeout(showProof, 3000);
   })();
   </script>
 
