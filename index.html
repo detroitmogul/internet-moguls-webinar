@@ -1058,8 +1058,14 @@
         minute: '2-digit',
         hour12: true
       }) + ' EST';
-      document.getElementById('eventDate').textContent =
-        'Next Session @ ' + timeStr;
+      // Format today's date e.g. "Thursday, April 17"
+      var dateStr = target.toLocaleDateString('en-US', {
+        timeZone: 'America/New_York',
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric'
+      });
+      document.getElementById('eventDate').textContent = dateStr + ' · ' + timeStr;
       var diff = target.getTime() - Date.now();
       if (diff < 0) diff = 0;
       var totalSec = Math.floor(diff / 1000);
