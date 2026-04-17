@@ -1139,16 +1139,13 @@
       }
       if (!alreadyCounted) {
         try { localStorage.setItem('im_counted_' + v, '1'); } catch(e){}
-        // Use sendBeacon (text/plain) to bypass CORS preflight
-        var impBody = JSON.stringify({ json: { variant: v, sessionId: sid } });
-        var impUrl  = 'https://abtracker-mras8ygu.manus.space/api/trpc/track.impression';
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon(impUrl, new Blob([impBody], { type: 'text/plain' }));
-        } else {
-          var xhr = new XMLHttpRequest();
-          xhr.open('POST', impUrl, true);
-          xhr.setRequestHeader('Content-Type', 'text/plain');
-          xhr.send(impBody);
+        // Use GET request — no CORS preflight, works cross-origin
+        var impInput = encodeURIComponent(JSON.stringify({ json: { variant: v, sessionId: sid } }));
+        var impUrl   = 'https://abtracker-mras8ygu.manus.space/api/trpc/track.impression?input=' + impInput;
+        var impImg   = new Image();
+        impImg.src   = impUrl;
+        if (typeof fetch !== 'undefined') {
+          fetch(impUrl, { method: 'GET', mode: 'no-cors' }).catch(function(){});
         }
       }
     });
@@ -1544,20 +1541,17 @@
   });
 
   // ─ Fire tRPC tracking helper
-  // Uses sendBeacon for ALL calls — avoids CORS preflight (no OPTIONS request)
-  // sendBeacon sends as text/plain which is a "simple request" browsers allow cross-origin
+  // Uses GET requests with URL-encoded params — GET never triggers CORS preflight
+  // tRPC procedures are now queries (GET) to support cross-origin calls from landing pages
   function fireTrack(procedure, payload) {
-    var url  = AB_TRACKER_URL + '/api/trpc/track.' + procedure;
-    var body = JSON.stringify({ json: payload });
-    if (navigator.sendBeacon) {
-      var blob = new Blob([body], { type: 'text/plain' });
-      navigator.sendBeacon(url, blob);
-    } else {
-      // Fallback for very old browsers
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', url, true);
-      xhr.setRequestHeader('Content-Type', 'text/plain');
-      xhr.send(body);
+    var input  = encodeURIComponent(JSON.stringify({ json: payload }));
+    var url    = AB_TRACKER_URL + '/api/trpc/track.' + procedure + '?input=' + input;
+    // Use Image beacon as ultimate fallback — works even if fetch/XHR are blocked
+    var img = new Image();
+    img.src = url;
+    // Also fire via fetch for reliability (no preflight for GET)
+    if (typeof fetch !== 'undefined') {
+      fetch(url, { method: 'GET', mode: 'no-cors' }).catch(function(){});
     }
   }
 
