@@ -1086,52 +1086,21 @@
     <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/yHHutYKLESCvbPao.png" alt="Internet Moguls" style="height:50px;width:auto;display:block;">
   </nav>
 
-  <!-- A/B/C SPLIT TEST SCRIPT -->
+  <!-- VARIANT A — WINNING HEADLINE (A/B test concluded) -->
   <script>
   (function(){
-    var variants = [
-      {
-        id: 'a',
-        h1: 'You Don\'t Need 10K Followers to Make $10K/Month<br><span>You Need One Automated Webinar</span>',
-        sub: 'And why almost nobody in your niche has figured this out yet.'
-      },
-      {
-        id: 'b',
-        h1: 'Stop Launching. Start Automating. <span>How Course Creators Are Using AI-Powered Auto Webinars</span> to Sell Every Day Without Going Live',
-        sub: 'The shift happening right now that most coaches are completely missing.'
-      },
-      {
-        id: 'd',
-        h1: 'How People Are Making <span>$10K&ndash;$50K/Month</span> By Simply Putting A Webinar On Autopilot',
-        sub: 'I\'m breaking down exactly how it works.'
-      }
-    ];
-    var key = 'im_ab_variant';
-    var stored = null;
-    try { stored = localStorage.getItem(key); } catch(e){}
-    var v;
-    if (stored && ['a','b','d'].indexOf(stored) !== -1) {
-      v = stored;
-    } else {
-      v = variants[Math.floor(Math.random() * 3)].id;
-      try { localStorage.setItem(key, v); } catch(e){}
-    }
-    // Set UTM in URL without reload
+    var v = 'a';
+    // Lock variant in localStorage (clears any old B/D assignment)
+    try { localStorage.setItem('im_ab_variant', v); } catch(e){}
+    // Set variant param in URL without reload
     try {
       var url = new URL(window.location.href);
       url.searchParams.set('variant', v);
       history.replaceState(null, '', url.toString());
     } catch(e){}
-    // Apply variant content after DOM ready
+    // Fire impression tracking once per session
     document.addEventListener('DOMContentLoaded', function(){
-      var variant = variants.filter(function(x){ return x.id === v; })[0];
-      var h1 = document.getElementById('ab-h1');
-      var sub = document.getElementById('ab-sub');
-      if (h1) h1.innerHTML = variant.h1;
-      if (sub) sub.textContent = variant.sub;
-      // Mark variant on body for CSS targeting
       document.body.setAttribute('data-variant', v);
-      // ─ Fire impression (visit) tracking — once per session only
       var sid = localStorage.getItem('im_session_id');
       var alreadyCounted = localStorage.getItem('im_counted_' + v);
       if (!sid) {
@@ -1140,7 +1109,6 @@
       }
       if (!alreadyCounted) {
         try { localStorage.setItem('im_counted_' + v, '1'); } catch(e){}
-        // Use GET request — no CORS preflight, works cross-origin
         var impInput = encodeURIComponent(JSON.stringify({ json: { variant: v, sessionId: sid } }));
         var impUrl   = 'https://abtracker-mras8ygu.manus.space/api/trpc/track.impression?input=' + impInput;
         var impImg   = new Image();
