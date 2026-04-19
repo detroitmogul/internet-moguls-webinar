@@ -1582,7 +1582,10 @@
     if (utms.utm_term)     params.set('utm_term',     utms.utm_term);
     if (utms.utm_content)  params.set('utm_content',  utms.utm_content);
 
-    // 4. Show success then redirect to WebinarFuel (redirects to offer page)
+    // 4. Store first name so offer page can personalise headline
+    try { localStorage.setItem('im_registrant_fname', firstName); } catch(e){}
+
+    // 5. Show success then redirect to WebinarFuel (redirects to offer page)
     document.getElementById('regFormView').style.display  = 'none';
     document.getElementById('regSuccessView').style.display = 'block';
     setTimeout(function(){
