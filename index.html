@@ -1099,26 +1099,26 @@
   (function(){
     var variants = [
       {
-        id: 'a',
-        h1: 'You Don\'t Need 10K Followers to Make $10K/Month<br><span>You Need One Automated Webinar</span>',
-        sub: 'And why almost nobody in your niche has figured this out yet.'
-      },
-      {
-        id: 'b',
-        h1: 'Stop Launching. Start Automating. <span>How Course Creators Are Using AI-Powered Auto Webinars</span> to Sell Every Day Without Going Live',
-        sub: 'The shift happening right now that most coaches are completely missing.'
-      },
-      {
         id: 'c',
         h1: 'What If Your Webinar Sold Your Course<br><span>While You Were at Dinner, at the Gym, or Asleep?</span>',
         sub: 'The automated webinar strategy coaches are using to sell every day without going live.'
+      },
+      {
+        id: 'd',
+        h1: 'While You\'re Living Your Life,<br><span>Your Webinar Is Working a 24-Hour Shift</span> — Selling, Enrolling, and Depositing',
+        sub: 'The system that runs your sales around the clock so you never have to.'
+      },
+      {
+        id: 'e',
+        h1: 'What If 3 AM Was Your Most Profitable Hour —<br><span>Because Your Webinar Never Clocks Out?</span>',
+        sub: 'How coaches are building income that earns while they sleep, travel, and live their life.'
       }
     ];
     var key = 'im_ab_variant';
     var stored = null;
     try { stored = localStorage.getItem(key); } catch(e){}
     var v;
-    if (stored && ['a','b','c'].indexOf(stored) !== -1) {
+    if (stored && ['c','d','e'].indexOf(stored) !== -1) {
       v = stored;
     } else {
       v = variants[Math.floor(Math.random() * 3)].id;
