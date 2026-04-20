@@ -1086,20 +1086,44 @@
     <img src="https://files.manuscdn.com/user_upload_by_module/session_file/104556088/yHHutYKLESCvbPao.png" alt="Internet Moguls" style="height:50px;width:auto;display:block;">
   </nav>
 
-  <!-- VARIANT A — WINNING HEADLINE (A/B test concluded) -->
+  <!-- A/B SPLIT TEST: Variant A vs Variant B -->
   <script>
   (function(){
-    var v = 'a';
-    // Lock variant in localStorage (clears any old B/D assignment)
-    try { localStorage.setItem('im_ab_variant', v); } catch(e){}
+    var variants = [
+      {
+        id: 'a',
+        h1: 'You Don\'t Need 10K Followers to Make $10K/Month<br><span>You Need One Automated Webinar</span>',
+        sub: 'And why almost nobody in your niche has figured this out yet.'
+      },
+      {
+        id: 'b',
+        h1: 'Stop Launching. Start Automating. <span>How Course Creators Are Using AI-Powered Auto Webinars</span> to Sell Every Day Without Going Live',
+        sub: 'The shift happening right now that most coaches are completely missing.'
+      }
+    ];
+    var key = 'im_ab_variant';
+    var stored = null;
+    try { stored = localStorage.getItem(key); } catch(e){}
+    var v;
+    if (stored && ['a','b'].indexOf(stored) !== -1) {
+      v = stored;
+    } else {
+      v = variants[Math.floor(Math.random() * 2)].id;
+      try { localStorage.setItem(key, v); } catch(e){}
+    }
     // Set variant param in URL without reload
     try {
       var url = new URL(window.location.href);
       url.searchParams.set('variant', v);
       history.replaceState(null, '', url.toString());
     } catch(e){}
-    // Fire impression tracking once per session
+    // Apply variant content + fire impression tracking
     document.addEventListener('DOMContentLoaded', function(){
+      var variant = variants.filter(function(x){ return x.id === v; })[0];
+      var h1 = document.getElementById('ab-h1');
+      var sub = document.getElementById('ab-sub');
+      if (h1) h1.innerHTML = variant.h1;
+      if (sub) sub.textContent = variant.sub;
       document.body.setAttribute('data-variant', v);
       var sid = localStorage.getItem('im_session_id');
       var alreadyCounted = localStorage.getItem('im_counted_' + v);
