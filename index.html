@@ -1049,31 +1049,34 @@
 
   <script>
   (function() {
-    var INTERVAL_MINS = 15; // Sessions every 15 minutes
+    // Fixed 3:00 PM EST daily session
     function getNextSlot() {
-      var now = Date.now();
-      var msInterval = INTERVAL_MINS * 60 * 1000;
-      // Always show at least 90 seconds on the clock
-      return new Date(Math.ceil((now + 90000) / msInterval) * msInterval);
+      var now = new Date();
+      // Get current time in EST
+      var estNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+      var target = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+      target.setHours(15, 0, 0, 0); // 3:00 PM EST
+      // If 3 PM has already passed today (with 90s buffer), roll to tomorrow
+      if (estNow.getTime() >= target.getTime() - 90000) {
+        target.setDate(target.getDate() + 1);
+      }
+      // Convert back to UTC-equivalent for countdown math
+      var offset = now.getTime() - estNow.getTime();
+      return new Date(target.getTime() + offset);
     }
     function pad(n) { return n < 10 ? '0' + n : '' + n; }
     function updateBar() {
       var target = getNextSlot();
-      // Format next slot time in EST
-      var timeStr = target.toLocaleTimeString('en-US', {
-        timeZone: 'America/New_York',
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true
-      }) + ' EST';
-      // Format today's date e.g. "Thursday, April 17"
-      var dateStr = target.toLocaleDateString('en-US', {
+      var estNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+      var estTarget = new Date(target.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+      var isToday = estNow.toDateString() === estTarget.toDateString();
+      var dateStr = isToday ? 'Today' : estTarget.toLocaleDateString('en-US', {
         timeZone: 'America/New_York',
         weekday: 'long',
         month: 'long',
         day: 'numeric'
       });
-      document.getElementById('eventDate').textContent = dateStr + ' · ' + timeStr;
+      document.getElementById('eventDate').textContent = dateStr + ' · 3:00 PM EST';
       var diff = target.getTime() - Date.now();
       if (diff < 0) diff = 0;
       var totalSec = Math.floor(diff / 1000);
@@ -1504,7 +1507,7 @@
   <script>
   // ─ Config
   var WF_ONECLICK_KEY = 'cKdaGaZhKqSJjywDtyYfUkco';
-  var WF_SESSION_ID   = '71788';
+  var WF_SESSION_ID   = '70895';
   var AB_TRACKER_URL  = 'https://abtracker-mras8ygu.manus.space';
 
   // ─ Capture visitor IP + city on page load (async, non-blocking)
