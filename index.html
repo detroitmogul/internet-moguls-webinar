@@ -1114,16 +1114,41 @@
         id: 'e',
         h1: 'What If 3 AM Was Your Most Profitable Hour —<br><span>Because Your Webinar Never Clocks Out?</span>',
         sub: 'How coaches are building income that earns while they sleep, travel, and live their life.'
+      },
+      {
+        id: 'f',
+        h1: 'How Online Coaches Are Hitting $50-100K/Month<br><span>Without Launching, Going Live, or Posting Daily Content</span>',
+        sub: 'The automated webinar system that sells your offer every day — without you being there.'
+      },
+      {
+        id: 'g',
+        h1: 'The 60-Minute Recording That Replaced My Sales Calls<br><span>(And Now Prints Revenue While I Sleep)</span>',
+        sub: 'How one automated webinar became the highest-converting asset in my entire business.'
+      },
+      {
+        id: 'h',
+        h1: 'The &ldquo;Print Money While You Sleep&rdquo; Asset<br><span>Every Coach Should Have Built By Now</span> (And Why You Don&rsquo;t)',
+        sub: 'The automated webinar blueprint that turns cold strangers into buyers — every single night.'
+      },
+      {
+        id: 'i',
+        h1: 'One Asset. Built Once.<br><span>Sells Your Offer to Cold Strangers Every Single Night.</span>',
+        sub: 'The automated webinar system coaches are using to generate consistent revenue without launching.'
+      },
+      {
+        id: 'j',
+        h1: 'The AI Mogul Stack&trade; Behind $18M+ in Coaching Sales<br><span>Across 12 Different Niches</span>',
+        sub: 'The exact automated webinar system we use to scale coaches and course creators to consistent monthly revenue.'
       }
     ];
     var key = 'im_ab_variant';
     var stored = null;
     try { stored = localStorage.getItem(key); } catch(e){}
     var v;
-    if (stored && ['c','d','e'].indexOf(stored) !== -1) {
+    if (stored && ['c','d','e','f','g','h','i','j'].indexOf(stored) !== -1) {
       v = stored;
     } else {
-      v = variants[Math.floor(Math.random() * 3)].id;
+      v = variants[Math.floor(Math.random() * variants.length)].id;
       try { localStorage.setItem(key, v); } catch(e){}
     }
     // Set variant param in URL without reload
