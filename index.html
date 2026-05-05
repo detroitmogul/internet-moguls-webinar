@@ -1049,13 +1049,13 @@
 
   <script>
   (function() {
-    // Fixed 3:00 PM EST daily session
+    // Fixed 8:00 PM EST daily session
     function getNextSlot() {
       var now = new Date();
       var estNow = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
       var target = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-      target.setHours(15, 0, 0, 0); // 3:00 PM EST
-      // If 3 PM has already passed today (with 90s buffer), roll to tomorrow
+      target.setHours(20, 0, 0, 0); // 8:00 PM EST
+      // If 8 PM has already passed today (with 90s buffer), roll to tomorrow
       if (estNow.getTime() >= target.getTime() - 90000) {
         target.setDate(target.getDate() + 1);
       }
@@ -1075,7 +1075,7 @@
         month: 'long',
         day: 'numeric'
       });
-      document.getElementById('eventDate').textContent = dateStr + ' · 3:00 PM EST';
+      document.getElementById('eventDate').textContent = dateStr + ' · 8:00 PM EST';
       var diff = target.getTime() - Date.now();
       if (diff < 0) diff = 0;
       var totalSec = Math.floor(diff / 1000);
@@ -1531,7 +1531,7 @@
   <script>
   // ─ Config
   var WF_ONECLICK_KEY = 'cKdaGaZhKqSJjywDtyYfUkco';
-  var WF_SESSION_ID   = '70895';
+  var WF_SESSION_ID   = '70897';
   var AB_TRACKER_URL  = 'https://abtracker-mras8ygu.manus.space';
 
   // ─ Capture visitor IP + city on page load (async, non-blocking)
