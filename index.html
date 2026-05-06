@@ -1101,16 +1101,6 @@
   (function(){
     var variants = [
       {
-        id: 'c',
-        h1: 'What If Your Webinar Sold Your Course<br><span>While You Were at Dinner, at the Gym, or Asleep?</span>',
-        sub: 'The automated webinar strategy coaches are using to sell every day without going live.'
-      },
-      {
-        id: 'd',
-        h1: 'While You\'re Living Your Life,<br><span>Your Webinar Is Working a 24-Hour Shift</span> — Selling, Enrolling, and Depositing',
-        sub: 'The system that runs your sales around the clock so you never have to.'
-      },
-      {
         id: 'e',
         h1: 'What If 3 AM Was Your Most Profitable Hour —<br><span>Because Your Webinar Never Clocks Out?</span>',
         sub: 'How coaches are building income that earns while they sleep, travel, and live their life.'
@@ -1124,11 +1114,6 @@
         id: 'g',
         h1: 'The 60-Minute Recording That Replaced My Sales Calls<br><span>(And Now Prints Revenue While I Sleep)</span>',
         sub: 'How one automated webinar became the highest-converting asset in my entire business.'
-      },
-      {
-        id: 'h',
-        h1: 'The &ldquo;Print Money While You Sleep&rdquo; Asset<br><span>Every Coach Should Have Built By Now</span> (And Why You Don&rsquo;t)',
-        sub: 'The automated webinar blueprint that turns cold strangers into buyers — every single night.'
       },
       {
         id: 'i',
@@ -1145,7 +1130,7 @@
     var stored = null;
     try { stored = localStorage.getItem(key); } catch(e){}
     var v;
-    if (stored && ['c','d','e','f','g','h','i','j'].indexOf(stored) !== -1) {
+    if (stored && ['e','f','g','i','j'].indexOf(stored) !== -1) {
       v = stored;
     } else {
       v = variants[Math.floor(Math.random() * variants.length)].id;
